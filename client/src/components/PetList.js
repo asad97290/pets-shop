@@ -32,9 +32,9 @@ export default function PetList() {
 
   return (
     <div>
-      <h3>Account:{address}</h3>
       {!loading ? (
         <div>
+          <h3>Account:{address}</h3>
           {isLoading ? (
             <img id="overlay" src="images/progress.gif" alt="progress.gif" />
           ) : (
@@ -73,12 +73,11 @@ export default function PetList() {
                     </>
                   ) : (
                     <>
-                      {address == adopters[pet.id] ? (
+                      {adopters[pet.id] == address ? (
                         <button onClick={() => dispatch(unAdoptPet(pet.id))}>
                           Un Adopt
                         </button>
                       ) : null}
-
                       <button disabled={true} style={{ margin: "10px" }}>
                         Already Adopted
                       </button>
@@ -90,9 +89,7 @@ export default function PetList() {
           )}
         </div>
       ) : (
-        <>
-          <img id="overlay" src="images/progress.gif" alt="progress.gif" />
-        </>
+        <img id="overlay" src="images/progress.gif" alt="progress.gif" />
       )}
     </div>
   );
