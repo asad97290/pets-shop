@@ -67,7 +67,11 @@ const adoptionSlice = createSlice({
     errorMessage: "",
     error: false,
   },
-  reducers: {},
+  reducers: {
+    setAccount:(state, action)=>{
+      state.address = action.payload
+    }
+  },
   extraReducers: {
     [initWeb3.fulfilled]: (state, action) => {
       state.web3 = action.payload.web3;
@@ -110,5 +114,5 @@ const adoptionSlice = createSlice({
   },
 });
 
-export const { adopt } = adoptionSlice.actions;
+export const { setAccount } = adoptionSlice.actions;
 export const adoptionReducer = adoptionSlice.reducer;

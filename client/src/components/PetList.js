@@ -10,12 +10,14 @@ import {
 
 export default function PetList() {
   const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
   const { adopters, isLoading, errorMessage, error, address } = useSelector(
     (state) => {
       return state.adoptionReducer;
     }
   );
+
   useEffect(() => {
     setLoading(true);
 
@@ -30,10 +32,9 @@ export default function PetList() {
 
   return (
     <div>
+      <h3>Account:{address}</h3>
       {!loading ? (
         <div>
-          <div>Address:{address}</div>
-
           {isLoading ? (
             <img id="overlay" src="images/progress.gif" alt="progress.gif" />
           ) : (
@@ -73,10 +74,11 @@ export default function PetList() {
                   ) : (
                     <>
                       {address == adopters[pet.id] ? (
-                      <button onClick={() => dispatch(unAdoptPet(pet.id))}>
-                        Un Adopt
-                      </button>):null}
-                    
+                        <button onClick={() => dispatch(unAdoptPet(pet.id))}>
+                          Un Adopt
+                        </button>
+                      ) : null}
+
                       <button disabled={true} style={{ margin: "10px" }}>
                         Already Adopted
                       </button>
